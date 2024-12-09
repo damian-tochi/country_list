@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:dio_smart_retry/dio_smart_retry.dart';
 
 
 class AppApi {
@@ -9,13 +10,24 @@ class AppApi {
 
 
   ///Auth APIs *
-
   Future<Response> signUpNewUser(fName, lName, email, pass) async {
+    client.interceptors.add(RetryInterceptor(
+      dio: client,
+      logPrint: print,
+      retries: 2,
+      retryDelays: const [
+        Duration(seconds: 1),
+        Duration(seconds: 2),
+        Duration(seconds: 3)
+      ],
+    ));
     Map data = {
       "firstname": fName,
       "lastname": lName,
       "email": email,
       "password": pass
+      // "email": "ditt0@yopmail.com",
+      // "password": "password"
     };
     final response = await client.post('$baseUrl/auth/signup', data: data, options:Options(
       headers: headerFree,),);
@@ -23,6 +35,16 @@ class AppApi {
   }
 
   Future<Response> signInEmail(email, pass) async {
+    client.interceptors.add(RetryInterceptor(
+      dio: client,
+      logPrint: print,
+      retries: 2,
+      retryDelays: const [
+        Duration(seconds: 1),
+        Duration(seconds: 2),
+        Duration(seconds: 3)
+      ],
+    ));
     Map data = {
       'email': email,
       'password': pass,

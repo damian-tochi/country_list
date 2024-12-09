@@ -3,6 +3,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:intl/intl.dart';
+import 'package:metro_pay/consts/app_icons.dart';
 import 'package:metro_pay/ui/components/inactive_custom_button.dart';
 
 import '../../components/number_input_keyboard.dart';
@@ -116,8 +117,7 @@ class FundBalanceState extends State<FundBalance> {
                             const SizedBox(
                               width: 5,
                             ),
-                            SvgPicture.asset(
-                              'assets/images/wallet-add-icon.svg',
+                            SvgPicture.asset(AppIcons.walletAddIcon,
                               width: 25.0,
                               height: 25.0,
                             ),
@@ -138,8 +138,7 @@ class FundBalanceState extends State<FundBalance> {
                             const SizedBox(
                               width: 7,
                             ),
-                            SvgPicture.asset(
-                              'assets/images/small-arrow-down.svg',
+                            SvgPicture.asset(AppIcons.smallDownArrow,
                               width: 20.0,
                               height: 20.0,
                             ),
@@ -177,8 +176,7 @@ class FundBalanceState extends State<FundBalance> {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   mainAxisSize: MainAxisSize.min,
                                   children: [
-                                    SvgPicture.asset(
-                                      'assets/images/naira_ico.svg',
+                                    SvgPicture.asset(AppIcons.nairaIcon,
                                       width: 20.0,
                                       height: 20.0,
                                     ),

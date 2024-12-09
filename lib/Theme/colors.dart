@@ -51,7 +51,7 @@ class CustomTheme {
   static const Color fullTransparent =  Color(0x00000000);
   static const Color lightGreen =  Color(0x5F02AA63);
   static const Color lightPurple =  Color(0x5F8048FF);
-  static const Color lightRed =  Color(0x5FF72727);
+  static const Color lightRed =  Color(0x9FF72727);
   static const Color lightYellow =  Color(0x5FE68C00);
 
 

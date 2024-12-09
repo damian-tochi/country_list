@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 import '../../Theme/colors.dart';
 
@@ -14,8 +15,16 @@ class NetworkLoader extends StatelessWidget {
   Widget build(BuildContext context) {
     return Positioned.fill(
       child: Container(
-        decoration: const BoxDecoration(color: CustomTheme.fullTransparent),
-        child: const SizedBox(height: double.maxFinite, width: double.maxFinite,)
+        decoration: const BoxDecoration(color: CustomTheme.transparentBlacker),
+        child: SpinKitChasingDots(
+          itemBuilder: (BuildContext context, int index) {
+            return DecoratedBox(
+              decoration: BoxDecoration(
+                color: index.isEven ? Colors.red : Colors.green,
+              ),
+            );
+          },
+        )
       ),
     );
   }

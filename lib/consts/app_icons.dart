@@ -3,11 +3,12 @@ class AppIcons {
 
   // Navigation and Actions
   static const String search = 'assets/images/ic_icon_feather_search.svg';
-  static const String back = 'assets/images/ic__vector__arrow_back.svg';
+  static const String back = 'assets/images/arrow-left-black.svg';
   static const String arrowRight = 'assets/images/arrow_right.svg';
   static const String arrowDown = 'assets/images/arrow_down_close.svg';
-  static const String leftArrow = 'assets/images/left_arrow.svg';
+  static const String leftArrow = 'assets/images/arrow-left-black.svg';
   static const String rightArrow = 'assets/images/right_arrow.svg';
+  static const String smallDownArrow = 'assets/images/small-arrow-down.svg';
   static const String coverBack = 'assets/images/cover_back.svg';
   static const String fsBack = 'assets/images/fs_back_img.svg';
   static const String closeQueue = 'assets/images/udux_close_img.svg';
@@ -37,6 +38,11 @@ class AppIcons {
   static const String fundAcc = "assets/images/money-receive-cam.svg";
   static const String withdraw = "assets/images/money-send.svg";
   static const String folderIcon = 'assets/images/folder-open.png';
+  static const String walletAddIcon = "assets/images/wallet-add-icon.svg";
   static const String cloudLightningIcon = 'assets/images/cloud-lightning.svg';
+  static const String userOctagon = 'assets/images/user_octagon.svg';
+  static const String nairaIcon = 'assets/images/naira_ico.svg';
+  static const String searchIcon = 'assets/images/search_normal.svg';
+  static const String passCheckIcon = 'assets/images/password-check.svg';
 
 }

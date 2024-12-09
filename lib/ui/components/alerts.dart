@@ -6,7 +6,6 @@ import '../../Consts/global_func.dart';
 import '../../Theme/colors.dart';
 
 
-
 greenSuccessAlert(String info, BuildContext context) {
   context.showFlash<bool>(
     barrierDismissible: true,
@@ -159,7 +158,7 @@ redFailedAlert(String info, BuildContext context) {
       content: Container(
           padding: const EdgeInsets.all(20),
           decoration: BoxDecoration(
-            color: CustomTheme.lightRed,
+            color: HexColor.fromHex('#F72727'),
             border: Border(
               left: BorderSide(
                 color: HexColor.fromHex('#F72727'),
@@ -194,9 +193,9 @@ redFailedAlert(String info, BuildContext context) {
                 child: Text(
                   info,
                   style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                        color: HexColor.fromHex("#000000"),
-                        fontSize: 13,
-                        fontWeight: FontWeight.w200,
+                        color: Colors.white,
+                        fontSize: 15,
+                        fontWeight: FontWeight.w400,
                       ),
                   maxLines: 1,
                 ),

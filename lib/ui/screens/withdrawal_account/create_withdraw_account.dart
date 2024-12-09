@@ -1,14 +1,12 @@
 import 'package:animation_wrappers/animation_wrappers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:metro_pay/consts/app_icons.dart';
 import 'package:metro_pay/ui/components/green_button.dart';
-import 'package:pin_code_fields/pin_code_fields.dart';
-
 import '../../../Consts/global_func.dart';
 import '../../../Routes/routes.dart';
 import '../../../Theme/colors.dart';
-import '../../components/inactive_custom_button.dart';
-import '../../components/number_input_keyboard.dart';
+import '../../components/auth_input_field.dart';
 
 
 class CreateWithdrawAccount extends StatefulWidget {
@@ -19,7 +17,7 @@ class CreateWithdrawAccount extends StatefulWidget {
 }
 
 class CreateWithdrawAccountState extends State<CreateWithdrawAccount> {
-  final _pinController = TextEditingController();
+  final TextEditingController searchTextController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -63,7 +61,7 @@ class CreateWithdrawAccountState extends State<CreateWithdrawAccount> {
                     children: [
                       const Align(
                         child: Text(
-                          'Fund Balance',
+                          'Create Withdrawal Account',
                           style: TextStyle(
                               color: Color(0xFF040405),
                               fontWeight: FontWeight.bold,
@@ -76,8 +74,7 @@ class CreateWithdrawAccountState extends State<CreateWithdrawAccount> {
                           onTap: () {
                             Navigator.pop(context);
                           },
-                          child: SvgPicture.asset(
-                            'assets/images/arrow-left-black.svg',
+                          child: SvgPicture.asset(AppIcons.back,
                             width: 25.0,
                             height: 25.0,
                           ),
@@ -103,45 +100,12 @@ class CreateWithdrawAccountState extends State<CreateWithdrawAccount> {
                           borderRadius: BorderRadius.circular(10),
                         ),
                         padding: const EdgeInsets.only(
-                            left: 10, top: 20, right: 10, bottom: 20),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            const SizedBox(
-                              width: 5,
-                            ),
-                            SvgPicture.asset(
-                              'assets/images/wallet-add-icon.svg',
-                              width: 25.0,
-                              height: 25.0,
-                            ),
-                            const SizedBox(
-                              width: 10,
-                            ),
-                            const Expanded(
-                              child: SizedBox(
-                                child: Text(
-                                  'How would you like to fund your balance?',
-                                  style: TextStyle(
-                                      color: Color(0xFF696969),
-                                      fontWeight: FontWeight.normal,
-                                      fontSize: 14),
-                                ),
-                              ),
-                            ),
-                            const SizedBox(
-                              width: 7,
-                            ),
-                            SvgPicture.asset(
-                              'assets/images/small-arrow-down.svg',
-                              width: 20.0,
-                              height: 20.0,
-                            ),
-                            const SizedBox(
-                              width: 5,
-                            ),
-                          ],
+                            left: 10, top: 1, right: 10, bottom: 1),
+                        child: AuthInputField(
+                          icon: AppIcons.searchIcon,
+                          label: "Account Number",
+                          controller: searchTextController,
+                          onChanged: (String value) {  },
                         ),
                       ),
                       const SizedBox(
@@ -149,6 +113,7 @@ class CreateWithdrawAccountState extends State<CreateWithdrawAccount> {
                       ),
                       Expanded(
                         child: Container(
+                          width: double.maxFinite,
                           decoration: BoxDecoration(
                             color: const Color(0xffFFFFFF),
                             borderRadius: BorderRadius.circular(10),
@@ -156,89 +121,17 @@ class CreateWithdrawAccountState extends State<CreateWithdrawAccount> {
                           padding: const EdgeInsets.only(
                               left: 10, top: 20, right: 10, bottom: 20),
                           child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
+                              const Text(
+                                'Select account',
+                                style: TextStyle(
+                                    color: Color(0xFF696969),
+                                    fontWeight: FontWeight.normal,
+                                    fontSize: 14),
+                              ),
+
                               const Spacer(),
-                              Container(
-                                decoration: BoxDecoration(
-                                  color: const Color(0xffF4F4F4),
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                                padding: const EdgeInsets.only(
-                                    left: 40, top: 10, right: 40, bottom: 10),
-                                child: Row(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    SvgPicture.asset(
-                                      'assets/images/naira_ico.svg',
-                                      width: 20.0,
-                                      height: 20.0,
-                                    ),
-                                    const Flexible(
-                                      child: Text(
-                                        '0.00',
-                                        style: TextStyle(
-                                            color: Color(0xFF696969),
-                                            fontWeight: FontWeight.normal,
-                                            fontSize: 40),
-                                        maxLines: 1,
-                                        overflow: TextOverflow.ellipsis,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Container(
-                                margin: const EdgeInsets.all(10),
-                                width: screenWidth,
-                                child: const Row(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      'Available Balance: ',
-                                      style: TextStyle(
-                                          color: Color(0xFF696969),
-                                          fontWeight: FontWeight.normal,
-                                          fontSize: 14),
-                                    ),
-                                    Text(
-                                      '₦324,000.31',
-                                      style: TextStyle(
-                                          color: Color(0xFF040405),
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 14),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Container(
-                                margin: const EdgeInsets.all(5),
-                                child: GreenButton(
-                                  onTap: () {},
-                                  label: 'Continue',
-                                  textColor: Colors.black,
-                                ),
-                              ),
-                              Container(
-                                height: 275,
-                                color: const Color(0xFFFFFFFF),
-                                padding: const EdgeInsets.only(bottom: 1),
-                                child: NumberKeyboard(
-                                  onKeyboardTap: (value) {
-                                    if (value == 'delete') {
-                                      _pinController.text = _pinController.text
-                                          .substring(0,
-                                              _pinController.text.length - 1);
-                                    } else {
-                                      _pinController.text += value;
-                                    }
-                                  },
-                                ),
-                              ),
                             ],
                           ),
                         ),

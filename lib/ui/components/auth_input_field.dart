@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import '../../Theme/colors.dart';
+
 
 class AuthInputField extends StatelessWidget {
   final String? label;
@@ -9,6 +9,7 @@ class AuthInputField extends StatelessWidget {
   final FocusNode? focusNode;
   final FocusNode? nextFocus;
   final TextInputType inputType;
+  final ValueChanged<String>? onChanged;
 
   const AuthInputField({
     super.key,
@@ -18,6 +19,7 @@ class AuthInputField extends StatelessWidget {
     this.focusNode,
     this.nextFocus,
     this.inputType = TextInputType.text,
+    this.onChanged,
   });
 
   @override
@@ -39,6 +41,8 @@ class AuthInputField extends StatelessWidget {
             ),
             Expanded(
               child: TextField(
+                controller: controller,
+                onChanged: onChanged,
                 style: const TextStyle(fontSize: 14),
                 decoration: InputDecoration(
                   focusedBorder: OutlineInputBorder(
@@ -59,6 +63,6 @@ class AuthInputField extends StatelessWidget {
               ),
             ),
           ],
-        ));
+        ),);
   }
 }

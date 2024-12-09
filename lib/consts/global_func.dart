@@ -1,6 +1,4 @@
-
-import 'dart:convert';
-import 'package:http/http.dart' as http;
+import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -202,13 +200,16 @@ String maskEmail(String email) {
   return '$maskedName@${parts[1]}';
 }
 
-void parseNetworkError(http.Response response, BuildContext context) {
+String parseNetworkError(Response response) {
   try{
-  var body = ErrorResponse.fromJson(json.decode(response.body));
-  redFailedAlert(body.developerMessage, context);
+  var body = ErrorResponse.fromJson(response.extra);
+  return body.message;
   } catch (e) {
     if (kDebugMode) {
       print('Error loading static items: $e');
+      return 'Error loading static items';
+    } else {
+      return 'Error loading static items';
     }
   }
 }

@@ -5,6 +5,7 @@ import 'package:metro_pay/ui/components/recipients_card.dart';
 
 import '../../../Consts/global_func.dart';
 import '../../../Routes/routes.dart';
+import '../../components/create_withdrawal_account_card.dart';
 import '../send_money/receipients.dart';
 
 
@@ -71,7 +72,7 @@ class WithdrawAccountState extends State<WithdrawAccount> {
                     children: [
                       const Align(
                         child: Text(
-                          'Withdraw ',
+                          'Withdrawal Account ',
                           style: TextStyle(
                               color: Color(0xFF040405),
                               fontWeight: FontWeight.bold,
@@ -126,6 +127,10 @@ class WithdrawAccountState extends State<WithdrawAccount> {
                             ),
 
                             const SizedBox(height: 10,),
+
+                            CreateWithdrawalAccountCard(onTap: () {
+                              Navigator.pushNamed(context, PageRoutes.createWithdrawalAccount);
+                            },),
 
                             ListView.builder(
                               scrollDirection: Axis.vertical,

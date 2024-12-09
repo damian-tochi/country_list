@@ -1,26 +1,17 @@
 
 class ErrorResponse {
-  final String developerMessage;
-  final String httpStatusCode;
-  final String defaultUserMessage;
-  final String userMessageGlobalisationCode;
-  final List<dynamic> errors;
+  final String statusCode;
+  final String message;
 
   ErrorResponse({
-    required this.developerMessage,
-    required this.httpStatusCode,
-    required this.defaultUserMessage,
-    required this.userMessageGlobalisationCode,
-    required this.errors,
+    required this.statusCode,
+    required this.message,
   });
 
   factory ErrorResponse.fromJson(Map<String, dynamic> json) {
     return ErrorResponse(
-      developerMessage: json['developerMessage'],
-      httpStatusCode: json['httpStatusCode'],
-      defaultUserMessage: json['defaultUserMessage'],
-      userMessageGlobalisationCode: json['userMessageGlobalisationCode'],
-      errors: json['errors'] ?? [],
+      statusCode: json['statusCode'],
+      message: json['message'],
     );
   }
 }
