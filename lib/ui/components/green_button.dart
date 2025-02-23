@@ -51,7 +51,7 @@ class GreenButton extends StatelessWidget {
             icon != null
                 ? SizedBox(width: iconGap ?? 20)
                 : const SizedBox.shrink(),
-            Flexible(
+            FittedBox(
               child: AutoSizeText(label!,
                 textAlign: TextAlign.center,
                 style: textStyle ??

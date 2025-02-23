@@ -202,7 +202,7 @@ String maskEmail(String email) {
 
 String parseNetworkError(Response response) {
   try{
-  var body = ErrorResponse.fromJson(response.extra);
+  var body = ErrorResponse.fromJson(response.data);
   return body.message;
   } catch (e) {
     if (kDebugMode) {

@@ -7,6 +7,7 @@ class AuthPasswordField extends StatefulWidget {
   final TextEditingController controller;
   final FocusNode? focusNode;
   final FocusNode? nextFocus;
+  final double? height;
   final ValueChanged<String>? onChanged;
 
   const AuthPasswordField({
@@ -15,6 +16,7 @@ class AuthPasswordField extends StatefulWidget {
     required this.controller,
     required this.focusNode,
     required this.nextFocus,
+    this.height,
     this.onChanged,
   }) : super(key: key);
 
@@ -28,9 +30,8 @@ class _PasswordFieldState extends State<AuthPasswordField> {
   @override
   Widget build(BuildContext context) {
     return Container(
-        padding:
-            const EdgeInsets.only(left: 15, right: 35, top: 20, bottom: 20),
-        height: 70,
+        padding: const EdgeInsets.only(left: 15, right: 20, top: 10, bottom: 10),
+        height: widget.height,
         color: Colors.white,
         margin: const EdgeInsets.only(left: 5, top: 5, right: 5),
         child: Row(
@@ -40,14 +41,14 @@ class _PasswordFieldState extends State<AuthPasswordField> {
           children: [
             SvgPicture.asset(
               'assets/images/lock_ico.svg',
-              width: 25,
-              height: 25,
+              width: 20,
+              height: 20,
             ),
             Expanded(
               child: TextField(
                 onChanged: widget.onChanged,
                 controller: widget.controller,
-                style: const TextStyle(fontSize: 14),
+                style: const TextStyle(fontSize: 12),
                 obscureText: _obscureText,
                 decoration: InputDecoration(
                     focusedBorder: OutlineInputBorder(
@@ -57,7 +58,7 @@ class _PasswordFieldState extends State<AuthPasswordField> {
                     ),
                     labelText: widget.label,
                     labelStyle:
-                        const TextStyle(color: Colors.black54, fontSize: 14),
+                        const TextStyle(color: Colors.black54, fontSize: 12),
                     floatingLabelStyle:
                         const TextStyle(color: Colors.black54, fontSize: 12),
                     border: OutlineInputBorder(
@@ -78,11 +79,11 @@ class _PasswordFieldState extends State<AuthPasswordField> {
                         child: _obscureText
                             ? SvgPicture.asset(
                                 'assets/images/eye_slash_ico.svg',
-                                fit: BoxFit.fill,
+                                fit: BoxFit.fill, height: 20, width: 20,
                               )
                             : SvgPicture.asset(
                                 'assets/images/eye_ico.svg',
-                                fit: BoxFit.fill,
+                                fit: BoxFit.fill, height: 20, width: 20,
                               ),
                       ),
                     ),

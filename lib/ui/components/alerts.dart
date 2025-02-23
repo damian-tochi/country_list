@@ -22,7 +22,7 @@ greenSuccessAlert(String info, BuildContext context) {
       content: Container(
           padding: const EdgeInsets.all(20),
           decoration: BoxDecoration(
-            color: CustomTheme.lightGreen,
+            color: Colors.green,
             border: Border(
               left: BorderSide(
                 color: HexColor.fromHex('#02AA63'),
@@ -45,11 +45,11 @@ greenSuccessAlert(String info, BuildContext context) {
           ),
           child: Row(
             children: [
-              SvgPicture.asset(
-                'assets/tick-circle.svg',
-                width: 30,
-                height: 30,
-              ),
+              // SvgPicture.asset(
+              //   'assets/tick-circle.svg',
+              //   width: 30,
+              //   height: 30,
+              // ),
               const SizedBox(
                 width: 10,
               ),
@@ -57,9 +57,9 @@ greenSuccessAlert(String info, BuildContext context) {
                   child: Text(
                 info,
                 style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                      color: HexColor.fromHex("#000000"),
-                      fontSize: 12,
-                      fontWeight: FontWeight.w100,
+                  color: Colors.white,
+                  fontSize: 15,
+                  fontWeight: FontWeight.w400,
                     ),
                     maxLines: 1,
               ),),

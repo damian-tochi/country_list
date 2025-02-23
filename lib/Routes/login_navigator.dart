@@ -3,6 +3,7 @@ import 'package:metro_pay/Routes/routes.dart';
 import 'package:metro_pay/ui/screens/forgot_pass/forgot_pass.dart';
 import 'package:metro_pay/ui/screens/login/login.dart';
 import 'package:metro_pay/ui/screens/reset_pass/reset_pass.dart';
+import '../ui/screens/create_account/select_account_type.dart';
 import '../ui/screens/login/login_page.dart';
 import '../ui/screens/sign_up/sign_up.dart';
 import '../ui/screens/start/start_ui.dart';
@@ -23,7 +24,7 @@ class LoginRoutes {
   static const String tokenExpired = 'tokenExpired/';
   static const String setTransactPin = 'setTransactionPin/';
   static const String confirmTransactPin = 'confirmTransactPin/';
-  static const String setSecurityQuestion = 'setSecurityQuestion/';
+  static const String createAccount = 'createAccount/';
 
   static const String forgotPassEmail = 'forgotPassEmail/';
   static const String forgotPassToken = 'forgotPassToken/';
@@ -77,6 +78,9 @@ class LoginNavigator extends StatelessWidget {
               break;
             case LoginRoutes.onboardPasReset:
               builder = (BuildContext _) => const ResetPassword();
+              break;
+            case LoginRoutes.createAccount:
+              builder = (BuildContext _) => const SelectAccountType();
               break;
           }
           return MaterialPageRoute(builder: builder, settings: settings);

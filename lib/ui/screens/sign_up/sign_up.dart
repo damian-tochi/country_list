@@ -38,6 +38,7 @@ class _SignUpState extends State<SignUp> {
 
   @override
   Widget build(BuildContext context) {
+    double screenHeight = MediaQuery.of(context).size.height;
     final apiCubit = context.read<AuthApiCubit>();
 
     return BlocListener<AuthApiCubit, ApiState>(
@@ -47,15 +48,15 @@ class _SignUpState extends State<SignUp> {
             Navigator.pushNamed(context, LoginRoutes.onboardTokenInput);
           }
         }
-        if (state is ApiErrorMsg) {
-          redFailedAlert(state.error, context);
-        }
-        if (state is ApiFailure) {
-          redFailedAlert(state.failure, context);
-        }
-        if (state is ApiErrorRegisterOnlyMsg) {
-          redFailedAlert(state.error, context);
-        }
+        // if (state is ApiErrorMsg) {
+        //   redFailedAlert(state.error, context);
+        // }
+        // if (state is ApiFailure) {
+        //   redFailedAlert(state.failure, context);
+        // }
+        // if (state is ApiErrorRegisterOnlyMsg) {
+        //   redFailedAlert(state.error, context);
+        // }
       },
       child: Scaffold(
         body: FadedSlideAnimation(
@@ -81,8 +82,7 @@ class _SignUpState extends State<SignUp> {
                   child: Column(
                     children: [
                       Container(
-                        padding: const EdgeInsets.only(
-                            top: 80.0, left: 20, right: 20, bottom: 20),
+                        padding: EdgeInsets.only(top: screenHeight / 12, left: 5, right: 20, bottom: 20),
                         color: Colors.white,
                         child: IntrinsicHeight(
                           child: Stack(
@@ -96,7 +96,10 @@ class _SignUpState extends State<SignUp> {
                               ),
                               Positioned(
                                 left: 0,
+                                top: 0,
+                                bottom: 0,
                                 child: IconButton(
+                                  padding: EdgeInsets.zero,
                                   onPressed: () {
                                     Navigator.pop(context);
                                   },
@@ -116,12 +119,14 @@ class _SignUpState extends State<SignUp> {
                         controller: firstNameController,
                         focusNode: firstNameNode,
                         nextFocus: lastNameNode,
+                        height: screenHeight / 17,
                         onChanged: (String value) {  },
                       ),
                       AuthInputField(
                         label: "Last Name (must match Legal ID)",
                         controller: lastNameController,
                         focusNode: lastNameNode,
+                        height: screenHeight / 17,
                         nextFocus: emailNode, onChanged: (String value) {  },
 
                       ),
@@ -130,6 +135,7 @@ class _SignUpState extends State<SignUp> {
                         label: "Email",
                         controller: emailController,
                         focusNode: emailNode,
+                        height: screenHeight / 17,
                         nextFocus: passwordNode, onChanged: (String value) {  },
 
                       ),
@@ -138,6 +144,7 @@ class _SignUpState extends State<SignUp> {
                         controller: passwordController,
                         focusNode: passwordNode,
                         nextFocus: confirmPassNode,
+                        height: screenHeight / 17,
                         onChanged: (String value) {  },
                       ),
                       AuthPasswordField(
@@ -145,13 +152,14 @@ class _SignUpState extends State<SignUp> {
                         controller: confirmPassController,
                         focusNode: confirmPassNode,
                         nextFocus: submitBtnNode,
+                        height: screenHeight / 17,
                         onChanged: (String value) {  },
                       ),
-                      const Spacer(),
+                      const Spacer(flex: 1,),
                       RichText(
                         textAlign: TextAlign.center,
                         text: const TextSpan(
-                          style: TextStyle(fontSize: 16),
+                          style: TextStyle(fontSize: 12),
                           children: <TextSpan>[
                             TextSpan(
                               text:
@@ -169,10 +177,12 @@ class _SignUpState extends State<SignUp> {
                       ),
                       Padding(
                         padding: const EdgeInsets.symmetric(
-                            horizontal: 20, vertical: 20),
+                            horizontal: 20, vertical: 10),
                         child: GreenButton(
+                          padding: 12,
+                          height: screenHeight / 17,
                           onTap: () {
-                            apiCubit.verifyData(firstNameController.text, lastNameController.text, emailController.text, passwordController.text, confirmPassController.text);
+                            apiCubit.verifyData(firstNameController.text, lastNameController.text, emailController.text, passwordController.text, confirmPassController.text, context);
                           },
                           color: primaryColor,
                           label: 'Create Account',
@@ -187,15 +197,17 @@ class _SignUpState extends State<SignUp> {
                               fontSize: 16)),
                       Padding(
                         padding: const EdgeInsets.symmetric(
-                            horizontal: 20, vertical: 20),
+                            horizontal: 20, vertical: 10),
                         child: GoogleButton(
+                          height: screenHeight / 17,
+                          padding: 12,
                           onTap: () {},
                         ),
                       ),
                       RichText(
                         textAlign: TextAlign.center,
                         text: TextSpan(
-                          style: const TextStyle(fontSize: 16),
+                          style: const TextStyle(fontSize: 12),
                           children: <TextSpan>[
                             const TextSpan(
                               text: 'Already have an account? ',
@@ -215,7 +227,7 @@ class _SignUpState extends State<SignUp> {
                           ],
                         ),
                       ),
-                      const Spacer(),
+                      const Spacer(flex: 6,),
                     ],
                   ),
                 ),

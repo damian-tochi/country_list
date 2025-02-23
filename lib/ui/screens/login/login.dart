@@ -40,21 +40,21 @@ class _LoginState extends State<Login> {
 
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
 
     final apiCubit = context.read<AuthApiCubit>();
 
     return BlocListener<AuthApiCubit, ApiState>(
         listener: (context, state) {
-      if (state is ApiSuccessString) {
-        if (state.data == 'Login') {
+      if (state is ApiSuccess) {
+        if (state.data == false) {
+          widget.loginInteractor.verifyUser();
+        } else if (state.data == true)  {
           widget.loginInteractor.loginUser();
+        } else {
+          widget.loginInteractor.createAccount();
         }
-      }
-      if (state is ApiErrorMsg) {
-        redFailedAlert(state.error, context);
-      }
-      if (state is ApiFailure) {
-        redFailedAlert(state.failure, context);
       }
     },
     child: Scaffold(
@@ -82,8 +82,7 @@ class _LoginState extends State<Login> {
                   child: Column(
                     children: [
                       Container(
-                        padding: const EdgeInsets.only(
-                            top: 80.0, left: 20, right: 20, bottom: 20),
+                        padding: EdgeInsets.only(top: screenHeight / 12, left: 5, right: 20, bottom: 20),
                         color: Colors.white,
                         child: IntrinsicHeight(
                           child: Stack(
@@ -97,7 +96,10 @@ class _LoginState extends State<Login> {
                               ),
                               Positioned(
                                 left: 0,
+                                top: 0,
+                                bottom: 0,
                                 child: IconButton(
+                                  padding: EdgeInsets.zero,
                                   onPressed: () {
                                     Navigator.pop(context);
                                   },
@@ -118,14 +120,15 @@ class _LoginState extends State<Login> {
                           AuthInputField(
                             icon: 'assets/images/mail_ico.svg',
                             label: "Email",
+                            height: screenHeight / 17,
                             controller: emailController,
                             focusNode: emailNode,
                             nextFocus: passwordNode,
-                            // onChanged: (String value) {
-                            //   setState(() {
-                            //     _showErrorIcon = false;
-                            //   });
-                            // },
+                            onChanged: (String value) {
+                              setState(() {
+                                _showErrorIcon = false;
+                              });
+                            },
 
                           ),
                           if (_showErrorIcon)
@@ -142,13 +145,14 @@ class _LoginState extends State<Login> {
                         children: [
                           AuthPasswordField(
                             label: "Password",
+                            height: screenHeight / 17,
                             controller: passwordController,
                             focusNode: passwordNode,
                             nextFocus: submitBtnNode,
-                            // onChanged: (String value) {
-                            //   setState(() {
-                            //   _showErrorIcon = false;
-                            // }); },
+                            onChanged: (String value) {
+                              setState(() {
+                              _showErrorIcon = false;
+                            }); },
                           ),
                           if (_showErrorIcon)
                             Container(
@@ -176,7 +180,7 @@ class _LoginState extends State<Login> {
                                 style: TextStyle(
                                     color: Colors.black,
                                     fontWeight: FontWeight.bold,
-                                    fontSize: 14),
+                                    fontSize: 12),
                               ),
                             ),
                           )
@@ -184,11 +188,13 @@ class _LoginState extends State<Login> {
                       ),
                       Padding(
                         padding: const EdgeInsets.symmetric(
-                            horizontal: 20, vertical: 18),
+                            horizontal: 20, vertical: 10),
                         child: GreenButton(
+                          height: screenHeight / 17,
+                          padding: 12,
                           onTap: () {
                             if (emailController.text.isNotEmpty && passwordController.text.isNotEmpty) {
-                              apiCubit.signInEmail(emailController.text, passwordController.text);
+                              apiCubit.signInEmail(emailController.text, passwordController.text, context);
                             } else {
                               setState(() {
                                 _showErrorIcon = true;
@@ -208,17 +214,20 @@ class _LoginState extends State<Login> {
                               fontSize: 16),),
                       Padding(
                         padding: const EdgeInsets.symmetric(
-                            horizontal: 20, vertical: 18),
+                            horizontal: 20, vertical: 10),
                         child: GoogleButton(
+                          padding: 12,
+                          height: screenHeight / 17,
                           onTap: () {
-                            Navigator.pushNamed(context, LoginRoutes.onboardPasReset);
+                            widget.loginInteractor.createAccount();
+                            //widget.loginInteractor.loginWithGoogle();
                           },
                         ),
                       ),
                       RichText(
                         textAlign: TextAlign.center,
                         text: TextSpan(
-                          style: const TextStyle(fontSize: 16),
+                          style: const TextStyle(fontSize: 12),
                           children: <TextSpan>[
                             const TextSpan(
                               text: 'Don’t have an account? ',

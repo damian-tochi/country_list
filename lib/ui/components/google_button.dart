@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:metro_pay/Consts/global_func.dart';
@@ -8,18 +9,21 @@ class GoogleButton extends StatelessWidget {
   final double? height;
   final double? width;
   final Function? onTap;
+  final double? padding;
 
   const GoogleButton({
     super.key,
     this.onTap,
     this.height,
     this.width,
+    this.padding,
   });
 
   @override
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
-    return SizedBox(
+    return Container(
+      height: height,
       width: double.infinity,
       child: OutlinedButton(
         onPressed: onTap as void Function()?,
@@ -29,7 +33,7 @@ class GoogleButton extends StatelessWidget {
               borderRadius: BorderRadius.circular(30),
             ),
             foregroundColor: Colors.black,
-            padding: const EdgeInsets.all(18.0),
+            padding: EdgeInsets.all(padding ?? 1.0),
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -40,11 +44,16 @@ class GoogleButton extends StatelessWidget {
             height: 25,
           ),
           const SizedBox(width: 10,),
-          Text("Sign Up with Google",
-            textAlign: TextAlign.center,
-            style: theme.textTheme.titleMedium!.copyWith(
-                color: Colors.black),
-          ),
+            FittedBox(
+              child: AutoSizeText("Sign Up with Google",
+                textAlign: TextAlign.center,
+                style: theme.textTheme.titleMedium!.copyWith(
+                    color: Colors.black),
+                maxFontSize: 16,
+                minFontSize: 1,
+                maxLines: 1,
+              ),
+            ),
         ],)
       ),
     );

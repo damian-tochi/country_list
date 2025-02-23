@@ -1,10 +1,13 @@
 import 'package:animation_wrappers/animations/faded_slide_animation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import '../../../../Consts/global_func.dart';
 import '../../../../Routes/routes.dart';
 import '../../../../consts/app_icons.dart';
+import '../../../../data/cubits/auth_cubit.dart';
+import '../../../../data/models/sign_in_response.dart';
 
 class Items {
   String name;
@@ -66,12 +69,15 @@ class _HomeState extends State<Home> {
     super.dispose();
   }
 
+  AccountData userData = AccountData();
+
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
     final topPadding = MediaQuery.sizeOf(context).height / 10;
     final itemWidth = screenWidth / 3;
+    userData = context.read<AuthApiCubit>().userData;
 
     return Scaffold(
       body: Stack(
@@ -122,10 +128,10 @@ class _HomeState extends State<Home> {
                                     top: 10, bottom: 10, left: 20, right: 20),
                                 child: Row(
                                   children: [
-                                    const Text(
-                                      "@TomiOla",
+                                    Text(
+                                      "@${userData.firstname!}",
                                       textAlign: TextAlign.center,
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                           color: Color(0xFF040405),
                                           fontWeight: FontWeight.bold,
                                           fontSize: 20),
@@ -243,10 +249,10 @@ class _HomeState extends State<Home> {
                           ),
                         ),
                         const Spacer(),
-                        const Text(
-                          "Hi Tomi",
+                        Text(
+                          "Hi ${userData.firstname!}",
                           textAlign: TextAlign.center,
-                          style: TextStyle(
+                          style: const TextStyle(
                               color: Color(0xFF000000),
                               fontWeight: FontWeight.w700,
                               fontSize: 25),

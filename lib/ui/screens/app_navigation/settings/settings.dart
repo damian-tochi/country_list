@@ -2,6 +2,7 @@ import 'package:animation_wrappers/animations/faded_slide_animation.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:metro_pay/ui/components/green_button.dart';
 import '../../../../Consts/global_func.dart';
@@ -10,6 +11,8 @@ import '../../../../Theme/colors.dart';
 import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:loading_btn/loading_btn.dart';
+import '../../../../data/cubits/auth_cubit.dart';
+import '../../../../data/models/sign_in_response.dart';
 import '../../../components/setting_item_clickable_card.dart';
 import '../../../components/setting_item_switch_card.dart';
 
@@ -22,12 +25,17 @@ class Settings extends StatefulWidget {
 }
 
 class _SettingsState extends State<Settings> {
+
+
+  AccountData userData = AccountData();
+
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
     final topPadding = MediaQuery.sizeOf(context).height / 10;
     final itemWidth = screenWidth / 3;
+    userData = context.read<AuthApiCubit>().userData;
 
     return Scaffold(
       body: FadedSlideAnimation(
@@ -74,10 +82,10 @@ class _SettingsState extends State<Settings> {
               const SizedBox(
                 height: 10,
               ),
-              const Align(
-                child: Text("Abiola Folashade",
+              Align(
+                child: Text("${userData.firstname!} ${userData.lastname}",
                     textAlign: TextAlign.center,
-                    style: TextStyle(
+                    style: const TextStyle(
                         fontSize: 18,
                         color: Color(0xFF040405),
                         fontWeight: FontWeight.bold)),

@@ -1,8 +1,14 @@
 class LoginInteractor {
-  void loginWithID(String isoCode, String mobileNumber) {
+  void loginWithGoogle() {
   }
 
   void loginUser() {
+  }
+
+  void verifyUser() {
+  }
+
+  void createAccount() {
   }
 
 }

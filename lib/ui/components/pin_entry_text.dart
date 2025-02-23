@@ -26,26 +26,25 @@ class PinEntryTextFieldState extends State<PinEntryTextField> {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.only(
-          right: MediaQuery.of(context).size.width / 8,
-          left: MediaQuery.of(context).size.width / 8),
+          right: MediaQuery.of(context).size.width / 15,
+          left: MediaQuery.of(context).size.width / 15),
       child: SizedBox(
-
         child: PinCodeTextField(
-          length: 4,
+          length: 6,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           obscureText: true,
           blinkWhenObscuring: true,
           animationType: AnimationType.slide,
           textStyle: const TextStyle(
             color: Colors.black87,
-            fontSize: 18,
+            fontSize: 10,
             fontWeight: FontWeight.bold,
           ),
           pinTheme: PinTheme(
             shape: PinCodeFieldShape.box,
             borderRadius: BorderRadius.circular(15),
-            fieldHeight: 65,
-            fieldWidth: 65,
+            fieldHeight: MediaQuery.of(context).size.height / 13.5,
+            fieldWidth: MediaQuery.of(context).size.width / 7.5,
             borderWidth: 1,
             selectedFillColor: const Color(0x8FCED2D9),
             activeFillColor: const Color(0x4FCED2D9),
