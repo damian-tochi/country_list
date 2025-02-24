@@ -1,8 +1,8 @@
+import 'package:african_countries/consts/app_icons.dart';
 import 'package:flash/flash.dart';
 import 'package:flash/flash_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import '../../Consts/global_func.dart';
 import '../../Theme/colors.dart';
 
 
@@ -23,21 +23,21 @@ greenSuccessAlert(String info, BuildContext context) {
           padding: const EdgeInsets.all(20),
           decoration: BoxDecoration(
             color: Colors.green,
-            border: Border(
+            border: const Border(
               left: BorderSide(
-                color: HexColor.fromHex('#02AA63'),
+                color: Color(0xFF02AA63),
                 width: 1,
               ),
               top: BorderSide(
-                color: HexColor.fromHex('#02AA63'),
+                color: Color(0xFF02AA63),
                 width: 1,
               ),
               bottom: BorderSide(
-                color: HexColor.fromHex('#02AA63'),
+                color: Color(0xFF02AA63),
                 width: 1,
               ),
               right: BorderSide(
-                color: HexColor.fromHex('#02AA63'),
+                color: Color(0xFF02AA63),
                 width: 1,
               ),
             ),
@@ -45,11 +45,6 @@ greenSuccessAlert(String info, BuildContext context) {
           ),
           child: Row(
             children: [
-              // SvgPicture.asset(
-              //   'assets/tick-circle.svg',
-              //   width: 30,
-              //   height: 30,
-              // ),
               const SizedBox(
                 width: 10,
               ),
@@ -64,7 +59,7 @@ greenSuccessAlert(String info, BuildContext context) {
                     maxLines: 1,
               ),),
               SvgPicture.asset(
-                'assets/close_ico.svg',
+                AppIcons.closeIcon,
                 width: 13,
                 height: 13,
               ),
@@ -91,21 +86,21 @@ purpleSystemAlert(String info, BuildContext context) {
           padding: const EdgeInsets.all(20),
           decoration: BoxDecoration(
             color: CustomTheme.lightPurple,
-            border: Border(
+            border: const Border(
               left: BorderSide(
-                color: HexColor.fromHex('#8048FF'),
+                color: Color(0xFF8048FF),
                 width: 1,
               ),
               top: BorderSide(
-                color: HexColor.fromHex('#8048FF'),
+                color: Color(0xFF8048FF),
                 width: 1,
               ),
               bottom: BorderSide(
-                color: HexColor.fromHex('#8048FF'),
+                color: Color(0xFF8048FF),
                 width: 1,
               ),
               right: BorderSide(
-                color: HexColor.fromHex('#8048FF'),
+                color: Color(0xFF8048FF),
                 width: 1,
               ),
             ),
@@ -114,7 +109,7 @@ purpleSystemAlert(String info, BuildContext context) {
           child: Row(
             children: [
               SvgPicture.asset(
-                'assets/info_circle_purple.svg',
+                AppIcons.infoCircle,
                 width: 30,
                 height: 30,
               ),
@@ -125,14 +120,14 @@ purpleSystemAlert(String info, BuildContext context) {
                   child: Text(
                 info,
                 style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                      color: HexColor.fromHex("#000000"),
+                      color: Color(0xFF000000),
                       fontSize: 12,
                       fontWeight: FontWeight.w100,
                     ),
                     maxLines: 1,
               ),),
               SvgPicture.asset(
-                'assets/close_ico.svg',
+                AppIcons.closeIcon,
                 width: 14,
                 height: 14,
               ),
@@ -158,22 +153,22 @@ redFailedAlert(String info, BuildContext context) {
       content: Container(
           padding: const EdgeInsets.all(20),
           decoration: BoxDecoration(
-            color: HexColor.fromHex('#F72727'),
-            border: Border(
+            color: Color(0xFFF72727),
+            border: const Border(
               left: BorderSide(
-                color: HexColor.fromHex('#F72727'),
+                color: Color(0xFFF72727),
                 width: 1,
               ),
               top: BorderSide(
-                color: HexColor.fromHex('#F72727'),
+                color: Color(0xFFF72727),
                 width: 1,
               ),
               bottom: BorderSide(
-                color: HexColor.fromHex('#F72727'),
+                color: Color(0xFFF72727),
                 width: 1,
               ),
               right: BorderSide(
-                color: HexColor.fromHex('#F72727'),
+                color: Color(0xFFF72727),
                 width: 1,
               ),
             ),
@@ -182,7 +177,7 @@ redFailedAlert(String info, BuildContext context) {
           child: Row(
             children: [
               SvgPicture.asset(
-                'assets/info_circle_red.svg',
+                AppIcons.infoCircle,
                 width: 30,
                 height: 30,
               ),
@@ -201,7 +196,7 @@ redFailedAlert(String info, BuildContext context) {
                 ),
               ),
               SvgPicture.asset(
-                'assets/close_ico.svg',
+                AppIcons.closeIcon,
                 width: 13,
                 height: 13,
               ),
@@ -228,21 +223,21 @@ yellowWarningAlerts(String info, BuildContext context) {
           padding: const EdgeInsets.all(20),
           decoration: BoxDecoration(
             color: CustomTheme.lightYellow,
-            border: Border(
+            border: const Border(
               left: BorderSide(
-                color: HexColor.fromHex('#E68C00'),
+                color: Color(0xFFE68C00),
                 width: 1,
               ),
               top: BorderSide(
-                color: HexColor.fromHex('#E68C00'),
+                color: Color(0xFFE68C00),
                 width: 1,
               ),
               bottom: BorderSide(
-                color: HexColor.fromHex('#E68C00'),
+                color: Color(0xFFE68C00),
                 width: 1,
               ),
               right: BorderSide(
-                color: HexColor.fromHex('#E68C00'),
+                color: Color(0xFFE68C00),
                 width: 1,
               ),
             ),
@@ -251,7 +246,7 @@ yellowWarningAlerts(String info, BuildContext context) {
           child: Row(
             children: [
               SvgPicture.asset(
-                'assets/danger.svg',
+                AppIcons.infoCircle,
                 width: 30,
                 height: 30,
               ),
@@ -262,14 +257,14 @@ yellowWarningAlerts(String info, BuildContext context) {
                   child: Text(
                 info,
                 style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                      color: HexColor.fromHex("#000000"),
+                      color: const Color(0xFF000000),
                       fontSize: 12,
                       fontWeight: FontWeight.w100,
                     ),
                     maxLines: 1,
               ),),
               SvgPicture.asset(
-                'assets/close_ico.svg',
+                AppIcons.closeIcon,
                 width: 13,
                 height: 13,
               ),

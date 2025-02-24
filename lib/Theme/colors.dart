@@ -2,17 +2,10 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
-import '../Consts/global_func.dart';
-
 Color? textFieldBackground = const Color(0xffFCFDFF);
 Color secondaryColor = const Color(0xff01ED19);
 Color blackColor = Colors.black;
 Color redColor = Colors.red;
-
-Color primaryColor = HexColor.fromHex('#ED1819');
-Color primaryLight = HexColor.fromHex('#FACACA');
-Color primaryDark = HexColor.fromHex('#990F0F');
-
 
 class CustomTheme {
   CustomTheme._();
@@ -45,9 +38,7 @@ class CustomTheme {
   static const Color transparentBlackLight =  Color(0x3F000000);
   static const Color transparentBlackLightest =  Color(0x1F000000);
   static const Color transparentBlacker =  Color(0x8F000000);
-  static const Color uduBlack =  Color(0xFF0D0D0D);
-  static const Color uduBlackish =  Color(0xFF121212);
-  static const Color uduBlackishing =  Color(0xFF212122);
+  static const Color transparentBlackest =  Color(0x9F000000);
   static const Color fullTransparent =  Color(0x00000000);
   static const Color lightGreen =  Color(0x5F02AA63);
   static const Color lightPurple =  Color(0x5F8048FF);
@@ -59,11 +50,8 @@ class CustomTheme {
   static const Color header2 = Color(0x9F808080);
   static const Color header3 = Color(0xFFFDFEFF);
 
-  static final colorM = HexColor.fromHex('#000000');
 
-  static final currTextColour = HexColor.fromHex('#59616D');
-
-  static const uduYellowAccent = MaterialAccentColor(
+  static const orangeAccent = MaterialAccentColor(
     0xFFC78000,
     <int, Color>{
       100: Color(0xFFC78000),
@@ -73,7 +61,7 @@ class CustomTheme {
     },
   );
 
-  static const uduBlackAccent = MaterialAccentColor(
+  static const blackAccent = MaterialAccentColor(
     0xFF080808,
     <int, Color>{
       100: Color(0xFF080808),
@@ -99,28 +87,12 @@ class CustomTheme {
   static const TextStyle headerText2 = TextStyle(color: header3, fontSize: 14);
   static const TextStyle authButton = TextStyle(color: scaffoldColor, fontSize: 12, fontWeight: FontWeight.bold);
 
-
-  static final colorBlack = HexColor.fromHex('#FFFFFF');
   static const Color gray = Color(0x8FFCFCFC);
   static const Color dropDownIconColor = Color(0xFFFDDBC6);
 
 
 }
 
-
-class MaterialRoute extends MaterialPageRoute {
-  MaterialRoute({required super.builder});
-
-  /// Reference to the [AnimationDuration] instance registered in the [ThemeData] as [ThemeExtension].
-  static AnimationDuration? animationDuration;
-
-  /// Default transition duration for the [MaterialRoute].
-  static const kDefaultTransitionDuration = Duration(milliseconds: 300);
-
-  @override
-  Duration get transitionDuration =>
-      animationDuration?.medium ?? kDefaultTransitionDuration;
-}
 
 /// Theme extension for providing style for the search bar used on mobile devices.
 class SearchBarThemeData extends ThemeExtension<SearchBarThemeData> {
@@ -182,282 +154,4 @@ class SearchBarThemeData extends ThemeExtension<SearchBarThemeData> {
     );
   }
 }
-
-
-class MaterialStandard extends ThemeExtension<MaterialStandard> {
-  final int value;
-
-  const MaterialStandard(this.value);
-
-  @override
-  ThemeExtension<MaterialStandard> copyWith({int? value}) {
-    return MaterialStandard(value ?? this.value);
-  }
-
-  @override
-  ThemeExtension<MaterialStandard> lerp(
-      ThemeExtension<MaterialStandard>? other,
-      double t,
-      ) {
-    if (other is! MaterialStandard) {
-      return this;
-    }
-    return MaterialStandard(other.value);
-  }
-}
-
-
-class AnimationDuration extends ThemeExtension<AnimationDuration> {
-  final Duration fast;
-  final Duration medium;
-  final Duration slow;
-
-  const AnimationDuration({
-    this.fast = const Duration(milliseconds: 150),
-    this.medium = const Duration(milliseconds: 300),
-    this.slow = const Duration(milliseconds: 450),
-  });
-
-  factory AnimationDuration.fromJson(Map<String, dynamic> json) {
-    return AnimationDuration(
-      fast: Duration(milliseconds: json['fast'] as int),
-      medium: Duration(milliseconds: json['medium'] as int),
-      slow: Duration(milliseconds: json['slow'] as int),
-    );
-  }
-
-  factory AnimationDuration.disabled() {
-    return const AnimationDuration(
-      fast: Duration.zero,
-      medium: Duration.zero,
-      slow: Duration.zero,
-    );
-  }
-
-  @override
-  ThemeExtension<AnimationDuration> copyWith({
-    bool? enabled,
-    Duration? fast,
-    Duration? medium,
-    Duration? slow,
-  }) {
-    return AnimationDuration(
-      fast: fast ?? this.fast,
-      medium: medium ?? this.medium,
-      slow: slow ?? this.slow,
-    );
-  }
-
-  @override
-  ThemeExtension<AnimationDuration> lerp(
-      ThemeExtension<AnimationDuration>? other,
-      double t,
-      ) {
-    if (other is! AnimationDuration) {
-      return this;
-    }
-    return AnimationDuration(
-      fast: fast * (1 - t) + other.fast * t,
-      medium: medium * (1 - t) + other.medium * t,
-      slow: slow * (1 - t) + other.slow * t,
-    );
-  }
-
-  @override
-  operator ==(Object other) {
-    if (identical(this, other)) return true;
-
-    return other is AnimationDuration &&
-        other.fast == fast &&
-        other.medium == medium &&
-        other.slow == slow;
-  }
-
-  @override
-  int get hashCode => fast.hashCode ^ medium.hashCode ^ slow.hashCode;
-
-  @override
-  String toString() {
-    return 'AnimationDuration(fast: $fast, medium: $medium, slow: $slow)';
-  }
-
-  Map<String, int> toJson() {
-    return {
-      'fast': fast.inMilliseconds,
-      'medium': medium.inMilliseconds,
-      'slow': slow.inMilliseconds,
-    };
-  }
-}
-
-/// Theme extension for providing various text colors independent of the the current [Brightness].
-class TextColors extends ThemeExtension<TextColors> {
-  final Color lightPrimary;
-  final Color darkPrimary;
-  final Color lightSecondary;
-  final Color darkSecondary;
-
-  const TextColors(
-      this.lightPrimary,
-      this.darkPrimary,
-      this.lightSecondary,
-      this.darkSecondary,
-      );
-
-  @override
-  ThemeExtension<TextColors> copyWith({
-    Color? lightPrimary,
-    Color? darkPrimary,
-    Color? lightSecondary,
-    Color? darkSecondary,
-  }) {
-    return TextColors(
-      lightPrimary ?? this.lightPrimary,
-      darkPrimary ?? this.darkPrimary,
-      lightSecondary ?? this.lightSecondary,
-      darkSecondary ?? this.darkSecondary,
-    );
-  }
-
-  @override
-  ThemeExtension<TextColors> lerp(
-      ThemeExtension<TextColors>? other,
-      double t,
-      ) {
-    if (other is! TextColors) {
-      return this;
-    }
-    return TextColors(
-      Color.lerp(
-        lightPrimary,
-        other.lightPrimary,
-        t,
-      ) ??
-          lightPrimary,
-      Color.lerp(
-        darkPrimary,
-        other.darkPrimary,
-        t,
-      ) ??
-          darkPrimary,
-      Color.lerp(
-        lightSecondary,
-        other.lightSecondary,
-        t,
-      ) ??
-          lightSecondary,
-      Color.lerp(
-        darkSecondary,
-        other.darkSecondary,
-        t,
-      ) ??
-          darkSecondary,
-    );
-  }
-}
-
-/// Theme extension for providing various icon colors independent of the the current [Brightness] e.g.
-/// Default icon colors, [AppBar] leading button & action buttons icons.
-class IconColors extends ThemeExtension<IconColors> {
-  final Color light;
-  final Color dark;
-  final Color appBarLight;
-  final Color appBarDark;
-  final Color appBarActionLight;
-  final Color appBarActionDark;
-  final Color lightDisabled;
-  final Color darkDisabled;
-
-  const IconColors(
-      this.light,
-      this.dark,
-      this.appBarLight,
-      this.appBarDark,
-      this.appBarActionLight,
-      this.appBarActionDark,
-      this.lightDisabled,
-      this.darkDisabled,
-      );
-
-  @override
-  ThemeExtension<IconColors> copyWith({
-    Color? light,
-    Color? dark,
-    Color? appBarLight,
-    Color? appBarDark,
-    Color? appBarActionLight,
-    Color? appBarActionDark,
-    Color? lightDisabled,
-    Color? darkDisabled,
-  }) {
-    return IconColors(
-      light ?? this.light,
-      dark ?? this.dark,
-      appBarLight ?? this.appBarLight,
-      appBarDark ?? this.appBarDark,
-      appBarActionLight ?? this.appBarActionLight,
-      appBarActionDark ?? this.appBarActionDark,
-      lightDisabled ?? this.lightDisabled,
-      darkDisabled ?? this.darkDisabled,
-    );
-  }
-
-  @override
-  ThemeExtension<IconColors> lerp(ThemeExtension<IconColors>? other, double t) {
-    if (other is! IconColors) {
-      return this;
-    }
-    return IconColors(
-      Color.lerp(
-        light,
-        other.light,
-        t,
-      ) ??
-          light,
-      Color.lerp(
-        dark,
-        other.dark,
-        t,
-      ) ??
-          dark,
-      Color.lerp(
-        appBarLight,
-        other.appBarLight,
-        t,
-      ) ??
-          appBarLight,
-      Color.lerp(
-        appBarDark,
-        other.appBarDark,
-        t,
-      ) ??
-          appBarDark,
-      Color.lerp(
-        appBarActionLight,
-        other.appBarActionLight,
-        t,
-      ) ??
-          appBarActionLight,
-      Color.lerp(
-        appBarActionDark,
-        other.appBarActionDark,
-        t,
-      ) ??
-          appBarActionDark,
-      Color.lerp(
-        lightDisabled,
-        other.lightDisabled,
-        t,
-      ) ??
-          lightDisabled,
-      Color.lerp(
-        darkDisabled,
-        other.darkDisabled,
-        t,
-      ) ??
-          darkDisabled,
-    );
-  }
-}
-
 
