@@ -1,16 +1,16 @@
-# metro_pay
+# country_list
 
-A new Flutter project.
+ Flutter app that displays a list of African countries along with relevant details.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+This project cam be imported to any IDE of your choice.
 
-A few resources to get you started if this is your first Flutter project:
+List of African Countries are retrived from these API Endpoints:
+● List countries in Africa:
+     https://restcountries.com/v3.1/region/africa?status=true&fields=n
+     ame,languages,capital,flags
+● Get country details by name:
+     https://restcountries.com/v3.1/name/{name}
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Donwload APK: https://drive.google.com/file/d/1qeRjSlyAblF5VOkOxjojSfnRt6eMgdUU/view?usp=sharing
